@@ -4,7 +4,6 @@ require 'sinatra'
 require 'sequel'
 #require 'yaml'
 #require 'tilt/erb'
-require 'whenever'
 #require 'json'
 require 'rufus-scheduler'
 
@@ -13,6 +12,7 @@ require 'rufus-scheduler'
 
 #use Rack::Session::Cookie, :secret => CONFIG['cookie_secret']
 
+require './models.rb'
 require './app.rb'
 
 run Spyder
