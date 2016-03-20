@@ -1,24 +1,24 @@
-if !File.exists?("spyder.db")
+if !File.exists?("./spyder.db")
 
   # IF YOU DO CHANGES HERE, DELETE THE FILE 'spyder.db'
 
   DB = Sequel.connect("sqlite://spyder.db")
 
-  DB.create_table :human do
+  DB.create_table :humans do
     primary_key :id
     String      :first_name
     String      :last_name
     TrueClass   :is_present
   end
 
-  DB.create_table :device do
+  DB.create_table :devices do
     primary_key :id
     String      :mac_address
     TrueClass   :is_present
     foreign_key :human_id
   end
 
-  DB.create_table :presence do
+  DB.create_table :presences do
     primary_key :id
     DateTime    :start_date
     DateTime    :end_date
