@@ -28,13 +28,17 @@ def add_presence(mac)
   else
     dev = Device.first(:mac_address => mac)
   end
-  puts dev
 end
+
+def hack_the_internet
+  macs = arp_mac_addr.uniq
+  macs.each{|m| add_presence(m)}
+end
+
+hack_the_internet
 
 scheduler = Rufus::Scheduler.new
 
 scheduler.every '15s' do
-  macs = arp_mac_addr.uniq
-
-  macs.each{|m| add_presence(m)}
+  hack_the_internet
 end
