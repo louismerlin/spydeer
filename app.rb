@@ -1,6 +1,6 @@
 class Spyder < Sinatra::Base
   get '/' do
-    @mac_address = Device.all.map{|d| d.get(:mac_address)}
+    @mac_address = Device.all.map{|d| d.mac_address}
 
     erb :'public/index', :layout => :'public/layout'
 
