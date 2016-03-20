@@ -7,6 +7,14 @@ class Spyder < Sinatra::Base
 
 
   end
+  get '/admin' do
+    #"<br>"  + $macs.join("</br><br>") + "</br>"
+    @mac_address = $macs
+
+    erb :'admin/index', :layout => :'admin/layout'
+
+
+  end
 end
 
 def arp_mac_addr()
