@@ -1,6 +1,5 @@
 class Spyder < Sinatra::Base
   get '/' do
-    #"<br>"  + $macs.join("</br><br>") + "</br>"
     @mac_address = $macs
 
     erb :'public/index', :layout => :'public/layout'
@@ -8,10 +7,10 @@ class Spyder < Sinatra::Base
 
   end
   get '/admin' do
-    #"<br>"  + $macs.join("</br><br>") + "</br>"
-    @mac_address = $macs
-
+    @undefined_devices = Device.where(:human_id=>nil)
     erb :'admin/index', :layout => :'admin/layout'
+
+
 
 
   end
