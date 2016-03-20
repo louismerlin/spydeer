@@ -1,10 +1,17 @@
 class Spyder < Sinatra::Base
   get '/' do
-    arp_mac_addr
+    "<br>"  + $macs.join("</br><br>") + "</br>"
   end
 end
 
 def arp_mac_addr()
 	arp = `sudo arp-scan -l`
 	return arp.split(/\n/).select{|l| l[0]=='1' && l[1]=='9' && l[2]=='2'}.map{|l| l.split(' ')[1]}
+end
+
+$macs = arp_mac_addr
+scheduler = Rufus::Scheduler.new
+
+scheduler.every '15s' do
+  $macs = arp_mac_addr
 end

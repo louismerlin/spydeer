@@ -2,9 +2,12 @@ puts '~~~~!!THIS IS SPYDER!!~~~~'
 
 require 'sinatra'
 require 'sequel'
-require 'yaml'
-require 'tilt/erb'
+#require 'yaml'
+#require 'tilt/erb'
+require 'whenever'
 #require 'json'
+require 'rufus-scheduler'
+
 
 #CONFIG =  YAML.load_file('config.yml')
 
