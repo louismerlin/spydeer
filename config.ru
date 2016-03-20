@@ -4,7 +4,6 @@ require 'sinatra'
 require 'sequel'
 #require 'yaml'
 #require 'tilt/erb'
-require 'whenever'
 #require 'json'
 require 'rufus-scheduler'
 

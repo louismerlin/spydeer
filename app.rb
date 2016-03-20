@@ -1,6 +1,11 @@
 class Spyder < Sinatra::Base
   get '/' do
-    "<br>"  + $macs.join("</br><br>") + "</br>"
+    #"<br>"  + $macs.join("</br><br>") + "</br>"
+    @mac_address = $macs
+
+    erb :'public/index', :layout => :'public/layout'
+
+
   end
 end
 
