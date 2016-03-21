@@ -3,7 +3,7 @@ puts '~~~~!!THIS IS SPYDER!!~~~~'
 require 'sinatra'
 require 'sequel'
 #require 'yaml'
-#require 'tilt/erb'
+require 'tilt/erb'
 #require 'json'
 require 'rufus-scheduler'
 
