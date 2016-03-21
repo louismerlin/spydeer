@@ -14,6 +14,7 @@ if !File.exists?("./spyder.db")
   DB.create_table :devices do
     primary_key :id
     String      :mac_address
+    String      :type
     TrueClass   :is_present
     foreign_key :human_id
   end
@@ -22,7 +23,7 @@ if !File.exists?("./spyder.db")
     primary_key :id
     DateTime    :start_date
     DateTime    :end_date
-    foreign_key :device
+    foreign_key :device_id
   end
 
   just_created = true
