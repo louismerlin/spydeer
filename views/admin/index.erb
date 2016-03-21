@@ -10,18 +10,21 @@
 
 </div>-->
 
+
+<h3> Create new human </h3>
 <div class="row">
 
-  <div class="twelve columns"style="background:#C0C0C0; margin-bottom:5px; border-radius:15px">
-    <h4> Create new human </h4>
-    <label for="devicesName">Enter new human name : </label>
-    <input class="u-full-width" type="string" placeholder="Jean-Jacques" id="exampleEmailInput">
+  <div class="twelve columns"style="background:#f3f3f3; margin-bottom:5px; border-radius:15px">
 
+    <label for="devicesName">First name: </label>
+    <input class="u-full-width" type="string" placeholder="Jean" id="exampleEmailInput">
+    <label for="devicesName">Last name: </label>
+    <input class="u-full-width" type="string" placeholder="Bond" id="exampleEmailInput">
 
   </div>
 </div>
 
-
+<h4> Undefined Devices </h4>
 <% @undefined_devices.each_with_index do |undefined_devices,i| %>
 
 
