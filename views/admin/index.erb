@@ -40,9 +40,9 @@
           <form>
                   <label for="exampleRecipientInput">Which human owns this device?</label>
                   <select class="u-full-width" id="exampleRecipientInput">
-                    <option value="Option 1">Hugo</option>
-                    <option value="Option 2">Louis</option>
-                    <option value="Option 3">Other</option>
+                    <%Human.all.each do |human|%>
+                    <option value="<%=human.id%>"><%=human.first_name + " " + human.last_name%></option>
+                    <%end%>
                   </select>
 
                   <label for="exampleRecipientInput">Device type</label>

@@ -32,7 +32,7 @@ else
 end
 
 
-class Human < Sequel::Model
+class Human < Sequel::Model(:humans)
   one_to_many :devices
 end
 
