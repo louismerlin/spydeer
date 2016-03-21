@@ -16,11 +16,11 @@
 <div class="two columns"><p></p></div>
   <div class="eight columns"style="background:#f3f3f3; margin-bottom:5px; border-radius:5px">
     <div class="container">
-<form>
-  <label for="devicesName">First name: </label>
-  <input class="u-full-width" type="string" placeholder="Jean" id="exampleEmailInput">
-  <label for="devicesName">Last name: </label>
-  <input class="u-full-width" type="string" placeholder="Bond" id="exampleEmailInput">
+      <br/>
+<form action="/admin/humans/new" method="post">
+  <input class="u-full-width" name="first_name" type="text" placeholder="First Name">
+  <input class="u-full-width" name="last_name" type="text" placeholder="Last Name">
+  <button class="u-full-width" type="submit">CREATE</button>
   </form>
 </div>
   </div>

@@ -10,11 +10,53 @@ class Spyder < Sinatra::Base
     erb :'admin/index', :layout => :'admin/layout'
   end
 
-  post '/admin/human' do
+
+  ## HUMAN ADMINISTRATION
+  get '/admin/humans' do
     protected!
+    erb :'admin/humans', :layout => :'admin/layout'
   end
 
-  post '/admin/device' do
+  post '/admin/humans/new' do
+    protected!
+    if !(params[:first_name]=="" && params[:last_name]=="")
+      Human.new(first_name:params[:first_name], last_name:params[:last_name]).save
+    end
+    redirect back
+  end
+
+  get '/admin/humans/edit/:id' do
+    protected!
+    @human = Human[params[:id].to_i]
+    erb :'admin/humans/edit', :layout => :'admin/layout'
+  end
+
+  post '/admin/humans/edit/:id' do
+    protected!
+    if !(params[:first_name]=="" && params[:last_name]=="") && Human.get(params[:id].to_i)!=nil
+      Human[params[:id].to_i].update(first_name:params[:first_name], last_name:params[:last_name]).save
+    end
+    redirect back
+  end
+
+  get '/admin/humans/delete/:id' do
+    protected!
+    if Human[params[:id]]!=nil
+      Human[params[:id]].destroy
+    end
+    redirect back
+  end
+
+
+  ## DEVICE ADMINISTRATION
+
+  post '/admin/device/new' do
+    protected!
+  end
+  post '/admin/device/edit' do
+    protected!
+  end
+  post '/admin/device/delete' do
     protected!
   end
 

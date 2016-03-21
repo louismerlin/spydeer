@@ -1,0 +1,9 @@
+<form action="/admin/humans/edit/<%= @human.id %>" method="post">
+  <div class="row">
+    <input class="one-half column u-full-width" type="text" name="first_name" placeholder="First Name" value="<%= @human.first_name %>"/>
+    <input class="one-half column u-full-width" type="text" name="last_name" placeholder="Last Name" value="<%= @human.last_name %>" />
+  </div>
+  <div class="row">
+    <button class="u-full-width" type="submit">Edit</button>
+  </div>
+</form>
