@@ -8,15 +8,15 @@
 
 
         <% @mac_address.each_with_index do |mac_address,i| %>
-   <%if i%3==0%>
-      <div class="row">
-  <%end%>
+        <%if i%3==0%>
+           <div class="row">
+       <%end%>
 
-          <div class="four columns">
-             <p align="center"><%=mac_address%></p>
-          </div>
-          
-  <%if i%3==2%>
-    </div>
-  <%end%>
+               <div class="four columns">
+                  <p align="center"><%=mac_address%></p>
+               </div>
+
+       <%if i%3==2%>
+         </div>
+       <%end%>
         <% end %>
