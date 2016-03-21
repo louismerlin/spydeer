@@ -1,19 +1,56 @@
 class Spyder < Sinatra::Base
   get '/' do
     @mac_address = Device.all.map{|d| d.mac_address}
-
     erb :'public/index', :layout => :'public/layout'
-
-
   end
+
   get '/admin' do
+    protected!
     @undefined_devices = Device.where(:human_id=>nil)
     erb :'admin/index', :layout => :'admin/layout'
-
-
-
-
   end
+
+  post '/admin/human' do
+    protected!
+  end
+
+  post '/admin/device' do
+    protected!
+  end
+
+  get '/admin/login' do
+    erb :'admin/login', layout: :'admin/layout'
+  end
+
+  post '/admin/login' do
+    if params[:username] == CONFIG['admin']['id'] && params[:password] == CONFIG['admin']['password']
+      session[:logged] = 'admin_true'
+      redirect '/admin'
+    else
+      redirect '/login'
+    end
+  end
+
+
+
+  helpers do
+    def protected!
+      if authorized?
+        true
+      else
+        redirect '/admin/login'
+      end
+    end
+
+    def authorized?
+      if session[:logged] == 'admin_true'
+        true
+      else
+        false
+      end
+    end
+  end
+
 end
 
 def arp_mac_addr()
@@ -41,7 +78,7 @@ def update_presence(macs)
       d.presence.last().end_date = Time.now()
       d.is_present = false
       if d.human != nil
-        if d.human.devices.all?{!|d|.is_present}
+        if d.human.devices.all?{|d| !d.is_present}
           d.human.is_present = false
         end
       end

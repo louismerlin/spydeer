@@ -1,0 +1,5 @@
+admin:
+   id: admin
+   password: lambda
+   
+cookie_secret: helloworld
