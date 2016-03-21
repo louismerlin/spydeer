@@ -27,7 +27,7 @@ class Spyder < Sinatra::Base
       session[:logged] = 'admin_true'
       redirect '/admin'
     else
-      redirect '/login'
+      redirect '/admin/login'
     end
   end
 
@@ -74,13 +74,13 @@ end
 
 def update_presence(macs)
   Device.all.each{|d|
-    if macs.include?(d.mac_address) && d.presence.last().end_date != nil
+    if macs.include?(d.mac_address) && d.presence.last() != nil && d.presence.last().end_date != nil
       d.add_presence(Presence.new(:start_date=>Time.now()).save)
       d.is_present = true
       if d.human != nil
         d.human.is_present = true
       end
-    elsif !macs.include?(d.mac_address) && d.presence.last().end_date != nil
+    elsif !macs.include?(d.mac_address) && d.presence.last() != nil && d.presence.last().end_date != nil
       d.presence.last().end_date = Time.now()
       d.is_present = false
       if d.human != nil
@@ -98,7 +98,7 @@ end
 
 def hack_the_internet
   macs = arp_mac_addr.uniq
-  macs.each_with_index{|m,i| create_device(m); puts i}
+  macs.each{|m| create_device(m)}
   update_presence(macs)
 end
 
