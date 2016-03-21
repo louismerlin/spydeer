@@ -1,6 +1,53 @@
 <center><h1>Spydeer</h1>
 <h4>A better way to track your flatmates  </h4></center>
 
+<h2>Overview</h2>
+<div class="row">
+
+  <div class="four columns" style="background:#f3f3f3; margin-bottom:5px; border-radius:15px">
+     <p align="center">Number of devices connected</p>
+     <center><h5><%=Device.all.count%></h5></center>
+  </div>
+
+
+
+
+  <div class="four columns" style="background:#f3f3f3; margin-bottom:5px; border-radius:15px">
+     <p align="center">Number of humans connected </p>
+     <center><h5><%=Human.all.count%></h5></center>
+  </div>
+
+
+
+
+
+  <div class="four columns" style="background:#f3f3f3; margin-bottom:5px; border-radius:15px">
+     <p align="center">Number of un-identified devices connected</p>
+<center><h5>nil</h5></center>
+  </div>
+
+</div>
+<p></p>
+
+<h2>Track your humans</h2>
+<div class="container">
+  <table class="u-full-width">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Number of devices</th>
+      <th>Connected since </th>
+    </tr>
+
+  </thead>
+  <tbody></tbody>
+  </table>
+
+
+</div>
+
+
 
 
 

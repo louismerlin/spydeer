@@ -98,7 +98,7 @@ end
 
 def hack_the_internet
   macs = arp_mac_addr.uniq
-  macs.each{|m| create_device(m)}
+  macs.each_with_index{|m,i| create_device(m);puts i}
   update_presence(macs)
 end
 
