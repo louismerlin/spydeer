@@ -17,14 +17,15 @@
   <div class="eight columns"style="background:#f3f3f3; margin-bottom:5px; border-radius:5px">
     <div class="container">
 <form>
-    <label for="devicesName">Enter new human name : </label>
-    <input class="u-full-width" type="string" placeholder="Jean-Jacques" id="exampleEmailInput">
+  <label for="devicesName">First name: </label>
+  <input class="u-full-width" type="string" placeholder="Jean" id="exampleEmailInput">
+  <label for="devicesName">Last name: </label>
+  <input class="u-full-width" type="string" placeholder="Bond" id="exampleEmailInput">
   </form>
 </div>
   </div>
 </div>
 <br/>
-
 <h2>Distribute Undefined Devices</h2>
 <% @undefined_devices.each_with_index do |undefined_devices,i| %>
 
@@ -32,6 +33,7 @@
 <%if i%3==0%>
    <div class="row" >
 <%end%>
+
 
 
        <div class="four columns" style="background:#f3f3f3; margin-bottom:5px; border-radius:15px">
