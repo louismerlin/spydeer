@@ -1,4 +1,4 @@
-puts '~~~~!!THIS IS SPYDER!!~~~~'
+puts '~~~~!!THIS IS SPYDEER!!~~~~'
 
 require 'sinatra'
 require 'sequel'
@@ -15,4 +15,4 @@ use Rack::Session::Cookie, :secret => CONFIG['cookie_secret']
 require './models.rb'
 require './app.rb'
 
-run Spyder
+run Spydeer
