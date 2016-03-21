@@ -6,13 +6,13 @@
 
 
 
-
+<h2>Unknown devices on the network</h2>
         <% @mac_address.each_with_index do |mac_address,i| %>
         <%if i%3==0%>
            <div class="row">
        <%end%>
 
-               <div class="four columns">
+               <div class="four columns" style="background:#f3f3f3; margin-bottom:5px; border-radius:15px">
                   <p align="center"><%=mac_address%></p>
                </div>
 
