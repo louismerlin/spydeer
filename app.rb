@@ -65,7 +65,13 @@ class Spydeer < Sinatra::Base
 
   post '/admin/devices/:id' do
     protected!
-
+    if Device[params[:id].to_i]!=nil && Human[params[:human_id].to_i]!=nil
+      puts params[:device_type] + " " + params[:name]
+      Device[params[:id].to_i].update(:type => params[:device_type], :name => params[:name])
+      Device[params[:id].to_i].save
+      Human[params[:human_id].to_i].add_device(Device[params[:id].to_i])
+    end
+    redirect back
   end
 
   get '/admin/devices/delete/:id' do

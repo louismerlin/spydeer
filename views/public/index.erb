@@ -3,7 +3,7 @@
 <h2>Overview</h2>
 <div class="row">
 
-  <div class="six columns" style="background:#f8f8f8; margin-bottom:5px">
+  <div class="six columns">
      <h4 align="center">Number of devices connected</h4>
      <center><h5><%=Device.all.count%></h5></center>
   </div>
@@ -11,7 +11,7 @@
 
 
 
-  <div class="six columns" style="background:#f8f8f8; margin-bottom:5px">
+  <div class="six columns">
      <h4 align="center">Number of humans connected </h4>
      <center><h5><%=Human.where{:is_present}.count%></h5></center>
   </div>
@@ -62,7 +62,7 @@
            <div class="row">
        <%end%>
 
-               <div class="four columns" style="background:#f3f3f3; margin-bottom:5px; border-radius:15px">
+               <div class="four columns">
                   <p align="center"><%=mac_address%></p>
                </div>
 
