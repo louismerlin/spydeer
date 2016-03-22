@@ -32,7 +32,19 @@
     </tr>
 
   </thead>
-  <tbody></tbody>
+  <tbody>
+    <%Human.where{:is_present}.each do |human| %>
+
+    <tr>
+      <td><%=human.last_name%></td>
+      <td><%=human.is_present%></td>
+      <td>nil</td>
+      <td><%=human.presence.start_date%></td>
+
+    </tr>
+    <%end%>
+
+  </tbody>
   </table>
 
 
