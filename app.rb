@@ -63,6 +63,11 @@ class Spydeer < Sinatra::Base
 
   end
 
+  post '/admin/devices/:id' do
+    protected!
+
+  end
+
   get '/admin/devices/delete/:id' do
     protected!
   end

@@ -25,6 +25,7 @@
 </div>
   </div>
 </div>
+<h3><a href="/admin/humans">Access your humans</a></h3>
 <br/>
 <h2>Distribute Undefined Devices</h2>
 <% @undefined_devices.each_with_index do |undefined_devices,i| %>
@@ -39,18 +40,19 @@
        <div class="four columns" style="background:#f3f3f3; margin-bottom:5px; border-radius:15px">
          <div class="container">
           <p><%= undefined_devices.mac_address %></p>
-          <form>
-                  <label for="exampleRecipientInput">Which human owns this device?</label>
-                  <select class="u-full-width" id="exampleRecipientInput">
+          <form action="admin/devices/<%=undefined_devices.id%>" method="post">
+                  <label>Which human owns this device?</label>
+                  <select class="u-full-width" name="human_id">
                     <%Human.all.each do |human|%>
                     <option value="<%=human.id%>"><%=human.first_name + " " + human.last_name%></option>
                     <%end%>
                   </select>
 
-                  <label for="exampleRecipientInput">Device type</label>
+                  <label>Device type</label>
                   <select class="u-full-width" id="exampleRecipientInput">
                     <option value="Option 1">Laptop</option>
                     <option value="Option 2">Mobile</option>
+                    <option value="Option 2">Tablet</option>
                     <option value="Option 3">Other</option>
                   </select>
                   <label for="devicesName">Enter new device name</label>
