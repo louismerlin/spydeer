@@ -15,6 +15,7 @@ if !File.exists?("./spydeer.db")
     primary_key :id
     String      :mac_address
     String      :type
+    String      :name
     TrueClass   :is_present
     foreign_key :human_id
   end
@@ -33,7 +34,7 @@ end
 
 
 class Human < Sequel::Model(:humans)
-  one_to_many :devices
+  one_to_many :device
 end
 
 class Device < Sequel::Model

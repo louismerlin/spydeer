@@ -14,7 +14,7 @@
 
 <div class="row">
 <div class="two columns"><p></p></div>
-  <div class="eight columns"style="background:#f3f3f3; margin-bottom:5px; border-radius:5px">
+  <div class="eight columns">
     <div class="container">
       <br/>
 <form action="/admin/humans/new" method="post">
@@ -33,7 +33,7 @@
 
 
 <h2>Distribute Undefined Devices</h2>
-<% @undefined_devices.each_with_index do |undefined_devices,i| %>
+<% @undefined_devices.each_with_index do |undefined_device,i| %>
 
 
 <%if i%3==0%>
@@ -42,10 +42,10 @@
 
 
 
-       <div class="four columns" style="background:#f3f3f3; margin-bottom:5px; border-radius:15px">
+       <div class="four columns">
          <div class="container">
-          <p><%= undefined_devices.mac_address %></p>
-          <form action="admin/devices/<%=undefined_devices.id%>" method="post">
+          <center><h5><%= undefined_device.mac_address %></h5></center>
+          <form action="admin/devices/<%=undefined_device.id%>" method="post">
                   <label>Which human owns this device?</label>
                   <select class="u-full-width" name="human_id">
                     <%Human.all.each do |human|%>
@@ -54,14 +54,15 @@
                   </select>
 
                   <label>Device type</label>
-                  <select class="u-full-width" id="exampleRecipientInput">
-                    <option value="Option 1">Laptop</option>
-                    <option value="Option 2">Mobile</option>
-                    <option value="Option 2">Tablet</option>
-                    <option value="Option 3">Other</option>
+                  <select class="u-full-width" name="device_type">
+                    <option value="laptop">Laptop</option>
+                    <option value="mobile">Mobile</option>
+                    <option value="tablet">Tablet</option>
+                    <option value="other">Other</option>
                   </select>
-                  <label for="devicesName">Enter new device name</label>
-                  <input class="u-full-width" type="string" placeholder="Mom's Android" id="exampleEmailInput">
+                  <input class="u-full-width" name="name" type="text" placeholder="Device Name">
+                  <button class="u-full-width" type="submit">Assign</button>
+
 
 
           </form>
