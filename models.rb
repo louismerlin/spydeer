@@ -1,8 +1,8 @@
-if !File.exists?("./spyder.db")
+if !File.exists?("./spydeer.db")
 
-  # IF YOU DO CHANGES HERE, DELETE THE FILE 'spyder.db'
+  # IF YOU DO CHANGES HERE, DELETE THE FILE 'spydeer.db'
 
-  DB = Sequel.connect("sqlite://spyder.db")
+  DB = Sequel.connect("sqlite://spydeer.db")
 
   DB.create_table :humans do
     primary_key :id
@@ -28,7 +28,7 @@ if !File.exists?("./spyder.db")
 
   just_created = true
 else
-  DB = Sequel.connect("sqlite://spyder.db")
+  DB = Sequel.connect("sqlite://spydeer.db")
 end
 
 
