@@ -17,6 +17,15 @@ class Spydeer < Sinatra::Base
     erb :'admin/humans', :layout => :'admin/layout'
   end
 
+  get '/admin/humans/:id' do
+    protected!
+    @human = Human[params[:id].to_i]
+    if @human!=nil
+      @human.first_name + " " + @human.last_name
+    end
+
+  end
+
   post '/admin/humans/new' do
     protected!
     if !(params[:first_name]=="" && params[:last_name]=="")
@@ -47,18 +56,17 @@ class Spydeer < Sinatra::Base
     redirect back
   end
 
-
   ## DEVICE ADMINISTRATION
 
-  post '/admin/device/new' do
+  get '/admin/devices/:id' do
+    protected!
+
+  end
+
+  get '/admin/devices/delete/:id' do
     protected!
   end
-  post '/admin/device/edit' do
-    protected!
-  end
-  post '/admin/device/delete' do
-    protected!
-  end
+
 
   get '/admin/login' do
     erb :'admin/login', layout: :'admin/layout'
@@ -103,7 +111,8 @@ end
 
 def arp_mac_addr()
   arp = `sudo arp-scan -l`
-  return arp.split(/\n/).select{|l| l[0]=='1' && l[1]=='2' && l[2]=='8'}.map{|l| l.split(' ')[1]}
+  ip = `ip addr | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}'`
+  return arp.split(/\n/).select{|l| l[0]==ip[0] && l[1]==ip[1] && l[2]==ip[2]}.map{|l| l.split(' ')[1]}
 end
 
 def create_device(mac)
@@ -140,7 +149,7 @@ end
 
 def hack_the_internet
   macs = arp_mac_addr.uniq
-  macs.each_with_index{|m,i| create_device(m);puts i}
+  macs.each_with_index{|m,i| create_device(m)}
   update_presence(macs)
 end
 
