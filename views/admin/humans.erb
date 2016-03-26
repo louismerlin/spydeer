@@ -1,13 +1,13 @@
 <%Human.all.each do |human|%>
-  <div id="row">
-    <div class="eight columns">
-      <h4><%=human.first_name + " " + human.last_name%></h4>
-    </div>
-    <div class="two columns">
-      <a class="button u-full-width" href="/admin/humans/edit/<%=human.id%>">Edit</a>
-    </div>
-    <div class="two columns">
-      <a class="button u-full-width" href="/admin/humans/delete/<%=human.id%>">Delete</a>
-    </div>
+<div id="row">
+  <div class="eight columns">
+    <h4><%=human.first_name + " " + human.last_name%></h4>
   </div>
+  <div class="two columns">
+    <a class="button u-full-width" href="/admin/humans/edit/<%=human.id%>">Edit</a>
+  </div>
+  <div class="two columns">
+    <a class="button u-full-width" href="/admin/humans/delete/<%=human.id%>">Delete</a>
+  </div>
+</div>
 <%end%>
