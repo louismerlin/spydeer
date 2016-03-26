@@ -1,6 +1,8 @@
 class Spydeer < Sinatra::Base
   get '/' do
-    @mac_address = Device.all.map{|d| d.mac_address}
+    @devices = Device.all.select{|d| d.presence.last.end_date==nil}
+    @humans = @devices.map{|d| d.human}.uniq.compact
+    @all_humans = Human.all
     erb :'public/index', :layout => :'public/layout'
   end
 
@@ -66,8 +68,7 @@ class Spydeer < Sinatra::Base
   post '/admin/devices/:id' do
     protected!
     if Device[params[:id].to_i]!=nil && Human[params[:human_id].to_i]!=nil
-      puts params[:device_type] + " " + params[:name]
-      Device[params[:id].to_i].update(:type => params[:device_type], :name => params[:name])
+      Device[params[:id].to_i].update(:device_type => params[:device_type], :name => params[:name])
       Device[params[:id].to_i].save
       Human[params[:human_id].to_i].add_device(Device[params[:id].to_i])
     end
@@ -130,7 +131,6 @@ def create_device(mac)
   if Device.first(:mac_address => mac)==nil
     dev = Device.new(mac_address:mac).save
     dev.add_presence(Presence.new(:start_date=>Time.now()).save)
-    dev.is_present = true
   end
 end
 
@@ -138,19 +138,8 @@ def update_presence(macs)
   Device.all.each{|d|
     if macs.include?(d.mac_address) && d.presence.last() != nil && d.presence.last().end_date != nil
       d.add_presence(Presence.new(:start_date=>Time.now()).save)
-      d.is_present = true
-      if d.human != nil
-        d.human.is_present = true
-      end
-    elsif !macs.include?(d.mac_address) && d.presence.last() != nil && d.presence.last().end_date != nil
-      d.presence.last().end_date = Time.now()
-      d.is_present = false
-      if d.human != nil
-        if d.human.devices.all?{|d| !d.is_present}
-          d.human.is_present = false
-        end
-      end
-      d.save
+    elsif !macs.include?(d.mac_address) && d.presence.last() != nil && d.presence.last().end_date == nil
+      d.presence.last.update(end_date:Time.now()).save
     end
   }
 

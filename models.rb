@@ -8,15 +8,13 @@ if !File.exists?("./spydeer.db")
     primary_key :id
     String      :first_name
     String      :last_name
-    TrueClass   :is_present
   end
 
   DB.create_table :devices do
     primary_key :id
     String      :mac_address
-    String      :type
+    String      :device_type
     String      :name
-    TrueClass   :is_present
     foreign_key :human_id
   end
 

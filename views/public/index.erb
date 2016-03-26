@@ -1,72 +1,63 @@
-<center><h1>Spydeer</h1></center>
+<center>
+  <h1>Spydeer</h1>
+</center>
 
 <h2>Overview</h2>
 <div class="row">
-
   <div class="six columns">
-     <h4 align="center">Number of devices connected</h4>
-     <center><h5><%=Device.all.count%></h5></center>
+    <h4 align="center">Number of devices connected</h4>
+    <center>
+      <h5><%=@devices.count%></h5>
+    </center>
   </div>
 
-
-
-
   <div class="six columns">
-     <h4 align="center">Number of humans connected </h4>
-     <center><h5><%=Human.where{:is_present}.count%></h5></center>
+    <h4 align="center">Number of humans connected
+    </h4>
+    <center>
+      <h5><%=@humans.count%></h5>
+    </center>
   </div>
-
 
 </div>
-<p></p>
 
 <h2>Track your humans</h2>
 <div class="container">
   <table class="u-full-width">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Status</th>
-      <th>Number of devices</th>
-      <th>Connected since </th>
-    </tr>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Number of devices</th>
+      </tr>
 
-  </thead>
-  <tbody>
-    <%Human.where{:is_present}.each do |human| %>
+    </thead>
+    <tbody>
+      <%@all_humans.each do |human| %>
 
-    <tr>
-      <td><%=human.last_name%></td>
-      <td><%=human.is_present%></td>
-      <td>nil</td>
-      <td><%=human.presence.start_date%></td>
+      <tr>
+        <td><%=human.first_name + " " + human.last_name%></td>
+        <td><%=@humans.include?(human) ? "Connected" : "Disconnected"%></td>
+        <td><%=human.device.count%></td>
+      </tr>
+      <%end%>
 
-    </tr>
-    <%end%>
-
-  </tbody>
+    </tbody>
   </table>
-
 
 </div>
 
+<h2>All devices on the network</h2>
+<% @devices.each_with_index do |device,i| %>
+<%if i%3==0%>
+<div class="row">
+  <%end%>
 
+  <div class="four columns">
+    <p align="center"><%=device.mac_address%></p>
+  </div>
 
-
-
-
-
-<h2>Unknown devices on the network</h2>
-        <% @mac_address.each_with_index do |mac_address,i| %>
-        <%if i%3==0%>
-           <div class="row">
-       <%end%>
-
-               <div class="four columns">
-                  <p align="center"><%=mac_address%></p>
-               </div>
-
-       <%if i%3==2%>
-         </div>
-       <%end%>
-        <% end %>
+  <%if i%3==2%>
+</div>
+<%end%>
+<% end %>
